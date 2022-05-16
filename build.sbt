@@ -149,7 +149,7 @@ lazy val chipyard = (project in file("generators/chipyard"))
   .settings(commonSettings)
 
 lazy val tracegen = (project in file("generators/tracegen"))
-  .dependsOn(testchipip, rocketchip, sifive_cache, boom)
+  .dependsOn(testchipip, rocketchip, sifive_cache)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
 
