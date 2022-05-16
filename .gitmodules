@@ -10,21 +10,12 @@
 [submodule "tools/torture"]
 	path = tools/torture
 	url = https://github.com/ucb-bar/riscv-torture.git
-[submodule "generators/boom"]
-	path = generators/boom
-	url = https://github.com/riscv-boom/riscv-boom.git
 [submodule "generators/sifive-blocks"]
 	path = generators/sifive-blocks
 	url = https://github.com/sifive/sifive-blocks.git
-[submodule "generators/hwacha"]
-	path = generators/hwacha
-	url = https://github.com/ucb-bar/hwacha.git
 [submodule "sims/firesim"]
 	path = sims/firesim
 	url = https://github.com/firesim/firesim.git
-[submodule "generators/icenet"]
-	path = generators/icenet
-	url = https://github.com/firesim/icenet.git
 [submodule "generators/block-inclusivecache-sifive"]
 	path = generators/sifive-cache
 	url = https://github.com/sifive/block-inclusivecache-sifive.git
@@ -71,9 +62,6 @@
 [submodule "tools/chisel-testers"]
 	path = tools/chisel-testers
 	url = https://github.com/freechipsproject/chisel-testers.git
-[submodule "generators/sha3"]
-	path = generators/sha3
-	url = https://github.com/ucb-bar/sha3.git
 [submodule "vlsi/hammer-cadence-plugins"]
 	path = vlsi/hammer-cadence-plugins
 	url = https://github.com/ucb-bar/hammer-cadence-plugins.git
@@ -95,21 +83,12 @@
 [submodule "software/coremark"]
 	path = software/coremark
 	url = https://github.com/ucb-bar/coremark-workload.git
-[submodule "generators/gemmini"]
-	path = generators/gemmini
-	url = https://github.com/ucb-bar/gemmini
 [submodule "software/firemarshal"]
 	path = software/firemarshal
 	url = https://github.com/firesim/FireMarshal.git
-[submodule "generators/cva6"]
-	path = generators/cva6
-	url = https://github.com/ucb-bar/cva6-wrapper.git
 [submodule "tools/DRAMSim2"]
 	path = tools/DRAMSim2
 	url = https://github.com/firesim/DRAMSim2.git
-[submodule "generators/nvdla"]
-	path = generators/nvdla
-	url = https://github.com/ucb-bar/nvdla-wrapper.git
 [submodule "software/nvdla-workload"]
 	path = software/nvdla-workload
 	url = https://github.com/ucb-bar/nvdla-workload.git
@@ -128,9 +107,3 @@
 [submodule "tools/rocket-dsp-utils"]
 	path = tools/rocket-dsp-utils
 	url = https://github.com/ucb-bar/rocket-dsp-utils
-[submodule "generators/ibex"]
-	path = generators/ibex
-	url = https://github.com/ucb-bar/ibex-wrapper
-[submodule "generators/fft-generator"]
-	path = generators/fft-generator
-	url = https://github.com/ucb-bar/FFTGenerator.git

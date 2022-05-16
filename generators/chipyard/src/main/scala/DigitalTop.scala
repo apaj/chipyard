@@ -25,14 +25,11 @@ class DigitalTop(implicit p: Parameters) extends ChipyardSystem
   with sifive.blocks.devices.gpio.HasPeripheryGPIO // Enables optionally adding the sifive GPIOs
   with sifive.blocks.devices.spi.HasPeripherySPIFlash // Enables optionally adding the sifive SPI flash controller
   with sifive.blocks.devices.spi.HasPeripherySPI // Enables optionally adding the sifive SPI port
-  with icenet.CanHavePeripheryIceNIC // Enables optionally adding the IceNIC for FireSim
   with chipyard.example.CanHavePeripheryInitZero // Enables optionally adding the initzero example widget
   with chipyard.example.CanHavePeripheryGCD // Enables optionally adding the GCD example widget
   with chipyard.example.CanHavePeripheryStreamingFIR // Enables optionally adding the DSPTools FIR example widget
   with chipyard.example.CanHavePeripheryStreamingPassthrough // Enables optionally adding the DSPTools streaming-passthrough example widget
-  with nvidia.blocks.dla.CanHavePeripheryNVDLA // Enables optionally having an NVDLA
   with chipyard.clocking.HasChipyardPRCI // Use Chipyard reset/clock distribution
-  with fftgenerator.CanHavePeripheryFFT // Enables optionally having an MMIO-based FFT block
 {
   override lazy val module = new DigitalTopModule(this)
 }

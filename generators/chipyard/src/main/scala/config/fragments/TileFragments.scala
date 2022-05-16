@@ -16,18 +16,12 @@ class WithL2TLBs(entries: Int) extends Config((site, here, up) => {
   case TilesLocated(InSubsystem) => up(TilesLocated(InSubsystem), site) map {
     case tp: RocketTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(nL2TLBEntries = entries)))
-    case tp: BoomTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
-      core = tp.tileParams.core.copy(nL2TLBEntries = entries)))
     case other => other
   }
 })
 
 class WithTraceIO extends Config((site, here, up) => {
   case TilesLocated(InSubsystem) => up(TilesLocated(InSubsystem), site) map {
-    case tp: BoomTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
-      trace = true))
-    case tp: CVA6TileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
-      trace = true))
     case other => other
   }
   case TracePortKey => Some(TracePortParams())
@@ -37,8 +31,6 @@ class WithNPerfCounters(n: Int = 29) extends Config((site, here, up) => {
   case TilesLocated(InSubsystem) => up(TilesLocated(InSubsystem), site) map {
     case tp: RocketTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(nPerfCounters = n)))
-    case tp: BoomTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
-      core = tp.tileParams.core.copy(nPerfCounters = n)))
     case other => other
   }
 })
@@ -46,8 +38,6 @@ class WithNPerfCounters(n: Int = 29) extends Config((site, here, up) => {
 class WithNPMPs(n: Int = 8) extends Config((site, here, up) => {
   case TilesLocated(InSubsystem) => up(TilesLocated(InSubsystem), site) map {
     case tp: RocketTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
-      core = tp.tileParams.core.copy(nPMPs = n)))
-    case tp: BoomTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(nPMPs = n)))
     case other => other
   }

@@ -22,8 +22,6 @@ import freechips.rocketchip.util._
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.amba.axi4._
 
-import boom.common.{BoomTile}
-
 
 import testchipip.{DromajoHelper, CanHavePeripheryTLSerial, SerialTLKey}
 
@@ -53,7 +51,6 @@ class ChipyardSubsystem(implicit p: Parameters) extends BaseSubsystem
 {
   def coreMonitorBundles = tiles.map {
     case r: RocketTile => r.module.core.rocketImpl.coreMonitorBundle
-    case b: BoomTile => b.module.core.coreMonitorBundle
   }.toList
 
 

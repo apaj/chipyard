@@ -22,7 +22,6 @@ import tracegen.{TraceGenSystemModuleImp}
 import barstools.iocell.chisel._
 
 import testchipip._
-import icenet.{CanHavePeripheryIceNIC, SimNetwork, NicLoopback, NICKey, NICIOvonly}
 import chipyard.clocking.{HasChipyardPRCI, DividerOnlyClockGenerator}
 
 import scala.reflect.{ClassTag}
@@ -337,17 +336,6 @@ class WithBlockDeviceIOPunchthrough extends OverrideIOBinder({
     val ports: Seq[ClockedIO[BlockDeviceIO]] = system.bdev.map({ bdev =>
       val p = IO(new ClockedIO(new BlockDeviceIO()(GetSystemParameters(system)))).suggestName("blockdev")
       p <> bdev
-      p
-    }).toSeq
-    (ports, Nil)
-  }
-})
-
-class WithNICIOPunchthrough extends OverrideIOBinder({
-  (system: CanHavePeripheryIceNIC) => {
-    val ports: Seq[ClockedIO[NICIOvonly]] = system.icenicOpt.map({ n =>
-      val p = IO(new ClockedIO(new NICIOvonly)).suggestName("nic")
-      p <> n
       p
     }).toSeq
     (ports, Nil)

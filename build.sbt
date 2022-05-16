@@ -142,15 +142,9 @@ lazy val testchipip = (project in file("generators/testchipip"))
   .settings(commonSettings)
 
 lazy val chipyard = (project in file("generators/chipyard"))
-  .dependsOn(testchipip, rocketchip, boom, hwacha, sifive_blocks, sifive_cache, iocell,
-    sha3, // On separate line to allow for cleaner tutorial-setup patches
+  .dependsOn(testchipip, rocketchip, sifive_blocks, sifive_cache, iocell,
     dsptools, `rocket-dsp-utils`,
-    gemmini, icenet, tracegen, cva6, nvdla, sodor, ibex, fft_generator)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val fft_generator = (project in file("generators/fft-generator"))
-  .dependsOn(rocketchip, `rocket-dsp-utils`)
+    tracegen, sodor)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
 
@@ -159,49 +153,7 @@ lazy val tracegen = (project in file("generators/tracegen"))
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
 
-lazy val icenet = (project in file("generators/icenet"))
-  .dependsOn(testchipip, rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val hwacha = (project in file("generators/hwacha"))
-  .dependsOn(rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val boom = (project in file("generators/boom"))
-  .dependsOn(testchipip, rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val cva6 = (project in file("generators/cva6"))
-  .dependsOn(rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val ibex = (project in file("generators/ibex"))
-  .dependsOn(rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
 lazy val sodor = (project in file("generators/riscv-sodor"))
-  .dependsOn(rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val sha3 = (project in file("generators/sha3"))
-  .dependsOn(rocketchip, midasTargetUtils)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(chiselTestSettings)
-  .settings(commonSettings)
-
-lazy val gemmini = (project in file("generators/gemmini"))
-  .dependsOn(testchipip, rocketchip)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(chiselTestSettings)
-  .settings(commonSettings)
-
-lazy val nvdla = (project in file("generators/nvdla"))
   .dependsOn(rocketchip)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
@@ -270,11 +222,3 @@ lazy val firechip = (project in file("generators/firechip"))
     Test / testGrouping := isolateAllTests( (Test / definedTests).value ),
     Test / testOptions += Tests.Argument("-oF")
   )
-lazy val fpga_shells = (project in file("./fpga/fpga-shells"))
-  .dependsOn(rocketchip, sifive_blocks)
-  .settings(libraryDependencies ++= rocketLibDeps.value)
-  .settings(commonSettings)
-
-lazy val fpga_platforms = (project in file("./fpga"))
-  .dependsOn(chipyard, fpga_shells)
-  .settings(commonSettings)

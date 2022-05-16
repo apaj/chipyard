@@ -26,7 +26,6 @@ import chipyard.clocking.{HasChipyardPRCI}
 import chipyard.iobinders.{GetSystemParameters, JTAGChipIO, ClockWithFreq}
 
 import tracegen.{TraceGenSystemModuleImp}
-import icenet.{CanHavePeripheryIceNIC, SimNetwork, NicLoopback, NICKey, NICIOvonly}
 
 import scala.reflect.{ClassTag}
 
@@ -106,24 +105,6 @@ class WithBlockDeviceModel extends OverrideHarnessBinder({
   (system: CanHavePeripheryBlockDevice, th: HasHarnessSignalReferences, ports: Seq[ClockedIO[BlockDeviceIO]]) => {
     implicit val p: Parameters = GetSystemParameters(system)
     ports.map { b => withClockAndReset(b.clock, th.buildtopReset) { BlockDeviceModel.connect(Some(b.bits)) } }
-  }
-})
-
-class WithLoopbackNIC extends OverrideHarnessBinder({
-  (system: CanHavePeripheryIceNIC, th: HasHarnessSignalReferences, ports: Seq[ClockedIO[NICIOvonly]]) => {
-    implicit val p: Parameters = GetSystemParameters(system)
-    ports.map { n =>
-      withClockAndReset(n.clock, th.buildtopReset) {
-        NicLoopback.connect(Some(n.bits), p(NICKey))
-      }
-    }
-  }
-})
-
-class WithSimNetwork extends OverrideHarnessBinder({
-  (system: CanHavePeripheryIceNIC, th: BaseModule with HasHarnessSignalReferences, ports: Seq[ClockedIO[NICIOvonly]]) => {
-    implicit val p: Parameters = GetSystemParameters(system)
-    ports.map { n => SimNetwork.connect(Some(n.bits), n.clock, th.buildtopReset.asBool) }
   }
 })
 
