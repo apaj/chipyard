@@ -87,8 +87,6 @@ cd "$CHIPYARD_DIR"
             toolchains/*-tools/*/ \
             toolchains/libgloss \
             toolchains/qemu \
-            generators/sha3 \
-            generators/gemmini \
             sims/firesim \
             software/nvdla-workload \
             software/coremark \
@@ -96,8 +94,7 @@ cd "$CHIPYARD_DIR"
             software/spec2017 \
             vlsi/hammer-cadence-plugins \
             vlsi/hammer-synopsys-plugins \
-            vlsi/hammer-mentor-plugins \
-            fpga/fpga-shells
+            vlsi/hammer-mentor-plugins 
         do
             "$1" "${name%/}"
         done
@@ -115,12 +112,7 @@ cd "$CHIPYARD_DIR"
 
 set -x
 
-# Non-recursive clone to exclude riscv-linux
-git submodule update --init generators/sha3
 
-# Non-recursive clone to exclude gemmini-software
-git submodule update --init generators/gemmini
-git -C generators/gemmini/ submodule update --init --recursive software/gemmini-rocc-tests
 
 # Minimal non-recursive clone to initialize sbt dependencies
 git submodule update --init sims/firesim
