@@ -50,6 +50,11 @@ class WithUARTBridge extends OverrideIOBinder({
     system.uart.foreach(u => UARTBridge(system.clock, u)(system.p)); Nil
 })
 
+class WithAdderBridge extends OverrideIOBinder({
+  (system: HasPeripheryUARTModuleImp) =>
+    system.uart.foreach(u => AdderBridge(system.clock, u)(system.p)); Nil
+})
+
 class WithBlockDeviceBridge extends OverrideIOBinder({
   (system: CanHavePeripheryBlockDeviceModuleImp) =>
     system.bdev.foreach(b => BlockDevBridge(system.clock, b, system.reset.toBool)(system.p)); Nil
@@ -151,4 +156,8 @@ class WithDefaultFireSimBridges extends Config(
   new WithFASEDBridge ++
   new WithFireSimMultiCycleRegfile ++
   new WithTracerVBridge
+)
+
+class WithDefaultFiresimBridgesAdder extends WithDefaultFireSimBridges(
+  new WithAdderBridge
 )
