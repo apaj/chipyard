@@ -158,6 +158,21 @@ class WithDefaultFireSimBridges extends Config(
   new WithTracerVBridge
 )
 
-class WithDefaultFiresimBridgesAdder extends WithDefaultFireSimBridges(
+//class WithDefaultFiresimBridgesAdder extends WithDefaultFireSimBridges(
+//  new WithAdderBridge
+//)
+
+
+class WithDefaultFireSimBridgesAdder extends Config(
+  new WithTiedOffSystemGPIO ++
+  new WithTiedOffSystemDebug ++
+  new WithTiedOffSystemInterrupts ++
+  new WithSerialBridge ++
+  new WithNICBridge ++
+  new WithUARTBridge ++
+  new WithBlockDeviceBridge ++
+  new WithFASEDBridge ++
+  new WithFireSimMultiCycleRegfile ++
+  new WithTracerVBridge ++
   new WithAdderBridge
 )
